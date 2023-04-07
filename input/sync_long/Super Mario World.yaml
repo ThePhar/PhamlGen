@@ -25,14 +25,14 @@
 #     {PLAYER} will be replaced with the player's slot number, if that slot number is greater than 1.
 #     {number} will be replaced with the counter value of the name.
 #     {NUMBER} will be replaced with the counter value of the name, if the counter value is greater than 1.
-name: Super Phario
+name: Super Phario {NUMBER}
 
 # Used to describe your yaml. Useful if you have multiple files.
 description: Default Super Mario World Template
 
 game: Super Mario World
 requires:
-  version: 0.3.7 # Version of Archipelago required for this yaml to work as expected.
+  version: 0.4.0 # Version of Archipelago required for this yaml to work as expected.
 
 Super Mario World:
   progression_balancing:
@@ -42,12 +42,11 @@ Super Mario World:
     # You can define additional values between the minimum and maximum values.
     # Minimum value is 0
     # Maximum value is 99
-    25: 1
     random: 0
     random-low: 0
     random-high: 0
     disabled: 0 # equivalent to 0
-    normal: 0 # equivalent to 50
+    normal: 50 # equivalent to 50
     extreme: 0 # equivalent to 99
 
   accessibility:
@@ -61,7 +60,8 @@ Super Mario World:
 
   local_items:
     # Forces these items to be in their native world.
-    []
+    - Climb
+    - Yoshi Egg
 
   non_local_items:
     # Forces these items to be outside their native world.
@@ -93,8 +93,8 @@ Super Mario World:
 
   death_link:
     # When you die, everyone dies. Of course the reverse is true too.
-    false: 19
-    true: 1
+    false: 50
+    true: 0
 
   goal:
     # Determines the goal of the seed
@@ -131,7 +131,7 @@ Super Mario World:
     # You can define additional values between the minimum and maximum values.
     # Minimum value is 1
     # Maximum value is 100
-    random-range-75-100: 50
+    80: 50
     random: 0
     random-low: 0
     random-high: 0
@@ -146,30 +146,60 @@ Super Mario World:
     # Vanilla: Front and Back Doors behave as vanilla
     # Fast: Both doors behave as the Back Door
     # Slow: Both doors behave as the Front Door
-    # "Front Door" requires beating all 8 Rooms
+    # "Front Door" rooms depend on the `bowser_castle_rooms` option
     # "Back Door" only requires going through the dark hallway to Bowser
     vanilla: 50
     fast: 0
     slow: 0
+
+  bowser_castle_rooms:
+    # How the rooms of Bowser's Castle Front Door behave
+    # Vanilla: You can choose which rooms to enter, as in vanilla
+    # Random Two Room: Two random rooms are chosen
+    # Random Five Room: Five random rooms are chosen
+    # Gauntlet: All eight rooms must be cleared
+    # Labyrinth: Which room leads to Bowser?
+    vanilla: 0
+    random_two_room: 50
+    random_five_room: 0
+    gauntlet: 0
+    labyrinth: 0
 
   level_shuffle:
     # Whether levels are shuffled
     false: 50
     true: 0
 
+  exclude_special_zone:
+    # If active, this option will prevent any progression items from being placed in Special Zone levels.
+    # Additionally, if Level Shuffle is active, Special Zone levels will not be shuffled away from their vanilla tiles.
+    false: 50
+    true: 0
+
+  boss_shuffle:
+    # How bosses are shuffled
+    # None: Bosses are not shuffled
+    # Simple: Four Reznors and the seven Koopalings are shuffled around
+    # Full: Each boss location gets a fully random boss
+    # Singularity: One or two bosses are chosen and placed at every boss location
+    none: 50
+    simple: 0
+    full: 0
+    singularity: 0
+
   swap_donut_gh_exits:
     # If enabled, this option will swap which overworld direction the two exits of the level at the Donut Ghost House
     #     overworld tile go:
     # False: Normal Exit goes up, Secret Exit goes right.
     # True: Normal Exit goes right, Secret Exit goes up.
-    false: 0
-    true: 30
+    false: 50
+    true: 0
 
   display_received_item_popups:
     # What messages to display in-game for items received
-    none: 50
+    none: 0
     all: 0
-    progression: 0
+    progression: 50
 
   trap_fill_percentage:
     # Replace a percentage of junk items in the item pool with random traps
@@ -177,7 +207,7 @@ Super Mario World:
     # You can define additional values between the minimum and maximum values.
     # Minimum value is 0
     # Maximum value is 100
-    5: 50
+    0: 50
     random: 0
     random-low: 0
     random-high: 0
@@ -203,10 +233,29 @@ Super Mario World:
     medium: 50
     high: 0
 
+  timer_trap_weight:
+    # Likelihood of a receiving a trap which causes the timer to run low
+    none: 0
+    low: 0
+    medium: 50
+    high: 0
+
   autosave:
     # Whether a save prompt will appear after every level
     false: 0
     true: 50
+
+  early_climb:
+    # Force Climb to appear early in the seed as a local item.
+    # This is particularly useful to prevent BK when Level Shuffle is disabled
+    false: 0
+    true: 50
+
+  overworld_speed:
+    # How fast Mario moves on the overworld
+    slow: 0
+    vanilla: 50
+    fast: 0
 
   music_shuffle:
     # Music shuffle type
@@ -215,29 +264,34 @@ Super Mario World:
     # Full: Each individual level has a random music track
     # Singularity: The entire game uses one song for overworld and one song for levels
     none: 0
-    consistent: 50
-    full: 0
+    consistent: 0
+    full: 50
     singularity: 0
 
   mario_palette:
     # Mario palette color
-    mario: 0
+    mario: 50
     luigi: 50
-    wario: 0
-    waluigi: 0
-    geno: 0
-    princess: 0
-    dark: 0
-    sponge: 0
+    wario: 50
+    waluigi: 50
+    geno: 50
+    princess: 50
+    dark: 50
+    sponge: 50
 
   foreground_palette_shuffle:
     # Whether to shuffle level foreground palettes
-    false: 0
+    false: 50
     true: 50
 
   background_palette_shuffle:
     # Whether to shuffle level background palettes
-    false: 0
+    false: 50
+    true: 50
+
+  overworld_palette_shuffle:
+    # Whether to shuffle overworld palettes
+    false: 50
     true: 50
 
   starting_life_count:
@@ -246,7 +300,7 @@ Super Mario World:
     # You can define additional values between the minimum and maximum values.
     # Minimum value is 1
     # Maximum value is 99
-    9: 50
+    69: 50
     random: 0
     random-low: 0
     random-high: 0

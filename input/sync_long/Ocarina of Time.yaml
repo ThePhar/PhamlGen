@@ -25,14 +25,14 @@
 #     {PLAYER} will be replaced with the player's slot number, if that slot number is greater than 1.
 #     {number} will be replaced with the counter value of the name.
 #     {NUMBER} will be replaced with the counter value of the name, if the counter value is greater than 1.
-name: Fairy Phar
+name: Fairy Phar {NUMBER}
 
 # Used to describe your yaml. Useful if you have multiple files.
 description: Default Ocarina of Time Template
 
 game: Ocarina of Time
 requires:
-  version: 0.3.7 # Version of Archipelago required for this yaml to work as expected.
+  version: 0.4.0 # Version of Archipelago required for this yaml to work as expected.
 
 Ocarina of Time:
   progression_balancing:
@@ -60,7 +60,7 @@ Ocarina of Time:
 
   local_items:
     # Forces these items to be in their native world.
-    []
+    - Triforce Piece
 
   non_local_items:
     # Forces these items to be outside their native world.
@@ -98,8 +98,8 @@ Ocarina of Time:
 
   logic_no_night_tokens_without_suns_song:
     # Nighttime skulltulas will logically require Sun's Song.
-    false: 50
-    true: 0
+    false: 0
+    true: 50
 
   open_forest:
     # Set the state of Kokiri Forest and the path to Deku Tree.
@@ -115,7 +115,7 @@ Ocarina of Time:
 
   open_door_of_time:
     # Open the Door of Time by default, without the Song of Time.
-    false: 0
+    false: 50
     true: 50
 
   zora_fountain:
@@ -213,7 +213,7 @@ Ocarina of Time:
     # You can define additional values between the minimum and maximum values.
     # Minimum value is 1
     # Maximum value is 80
-    20: 50
+    40: 50
     random: 0
     random-low: 0
     random-high: 0
@@ -225,7 +225,7 @@ Ocarina of Time:
     # You can define additional values between the minimum and maximum values.
     # Minimum value is 0
     # Maximum value is 100
-    50: 50
+    25: 50
     random: 0
     random-low: 0
     random-high: 0
@@ -286,10 +286,10 @@ Ocarina of Time:
     # You can define additional values between the minimum and maximum values.
     # Minimum value is 0
     # Maximum value is 6
-    6: 50
+    6: 0
     random: 0
     random-low: 0
-    random-high: 0
+    random-high: 50
 
   bridge_rewards:
     # Set the number of dungeon rewards required for the rainbow bridge.
@@ -339,10 +339,10 @@ Ocarina of Time:
     # Control where to shuffle dungeon small keys.
     remove: 0
     vanilla: 0
-    dungeon: 50
+    dungeon: 0
     overworld: 0
     any_dungeon: 0
-    keysanity: 0
+    keysanity: 50
     regional: 0
 
   shuffle_hideoutkeys:
@@ -365,8 +365,8 @@ Ocarina of Time:
 
   enhance_map_compass:
     # Map tells if a dungeon is vanilla or MQ. Compass tells what the dungeon reward is.
-    false: 0
-    true: 50
+    false: 50
+    true: 0
 
   shuffle_ganon_bosskey:
     # Control how to shuffle the Ganon's Castle Boss Key.
@@ -441,9 +441,9 @@ Ocarina of Time:
 
   key_rings:
     # Dungeons have all small keys found at once, rather than individually.
-    off: 50
+    off: 0
     choose: 0
-    all: 0
+    all: 50
     random_dungeons: 0
 
   key_rings_list:
@@ -452,26 +452,26 @@ Ocarina of Time:
 
   shuffle_song_items:
     # Set where songs can appear.
-    song: 0
+    song: 50
     dungeon: 0
-    any: 50
+    any: 0
 
   shopsanity:
-    # Randomizes shop contents. "fixed_number" randomizes a specific number of items per shop;
+    # Randomizes shop contents. "fixed_number" randomizes a specific number of items per shop; 
     # "random_number" randomizes the value for each shop.
-    off: 0
-    fixed_number: 50
+    off: 50
+    fixed_number: 0
     random_number: 0
 
   shop_slots:
-    # Number of items per shop to be randomized into the main itempool.
+    # Number of items per shop to be randomized into the main itempool. 
     # Only active if Shopsanity is set to "fixed_number."
     #
     # You can define additional values between the minimum and maximum values.
     # Minimum value is 0
     # Maximum value is 4
-    0: 0
-    random: 50
+    0: 50
+    random: 0
     random-low: 0
     random-high: 0
 
@@ -500,9 +500,9 @@ Ocarina of Time:
 
   shuffle_child_trade:
     # Controls the behavior of the start of the child trade quest.
-    vanilla: 50
+    vanilla: 0
     shuffle: 0
-    skip_child_zelda: 0
+    skip_child_zelda: 50
 
   shuffle_freestanding_items:
     # Shuffles freestanding rupees, recovery hearts, Shadow Temple Spinning Pots, and Goron Pot.
@@ -557,8 +557,8 @@ Ocarina of Time:
 
   shuffle_medigoron_carpet_salesman:
     # Shuffle the items sold by Medigoron and the Haunted Wasteland Carpet Salesman.
-    false: 0
-    true: 50
+    false: 50
+    true: 0
 
   shuffle_frog_song_rupees:
     # Shuffles the purple rupees received from the Zora's River frogs.
@@ -603,8 +603,8 @@ Ocarina of Time:
 
   free_scarecrow:
     # Pulling out the ocarina near a scarecrow spot spawns Pierre without needing the song.
-    false: 50
-    true: 0
+    false: 0
+    true: 50
 
   fast_bunny_hood:
     # Bunny Hood lets you move 1.5x faster like in Majora's Mask.
@@ -651,8 +651,8 @@ Ocarina of Time:
 
   correct_chest_appearances:
     # Changes chest textures and/or sizes to match their contents. "Classic" is the old behavior of CSMC.
-    off: 50
-    textures: 0
+    off: 0
+    textures: 50
     both: 0
     classic: 0
 
@@ -668,8 +668,8 @@ Ocarina of Time:
 
   correct_potcrate_appearances:
     # Unchecked pots and crates have a different texture; unchecked beehives will wiggle. With textures_content, pots and crates have an appearance based on their contents; with textures_unchecked, all unchecked pots/crates have the same appearance.
-    off: 50
-    textures_content: 0
+    off: 0
+    textures_content: 50
     textures_unchecked: 0
 
   hints:
@@ -696,7 +696,7 @@ Ocarina of Time:
 
   text_shuffle:
     # Randomizes text in the game for comedic effect.
-    none: 0
+    none: 50
     except_hints: 50
     complete: 0
 
@@ -741,8 +741,8 @@ Ocarina of Time:
 
   fix_broken_drops:
     # Fixes two broken vanilla drops: deku shield in child Spirit Temple, and magic drop on GTG eye statue.
-    false: 0
-    true: 50
+    false: 50
+    true: 0
 
   start_with_consumables:
     # Start the game with full Deku Sticks and Deku Nuts.
@@ -764,10 +764,10 @@ Ocarina of Time:
   junk_ice_traps:
     # Adds ice traps to the item pool.
     off: 0
-    normal: 50
-    on: 30
-    mayhem: 10
-    onslaught: 1
+    normal: 0
+    on: 0
+    mayhem: 50
+    onslaught: 0
 
   ice_trap_appearance:
     # Changes the appearance of ice traps as freestanding items.
@@ -1709,7 +1709,7 @@ Ocarina of Time:
     flute: 0
 
   logic_tricks:
-    # Set various tricks for logic in Ocarina of Time.
+    # Set various tricks for logic in Ocarina of Time. 
     # Format as a comma-separated list of "nice" names: ["Fewer Tunic Requirements", "Hidden Grottos without Stone of Agony"].
     # A full list of supported tricks can be found at:
     # https://github.com/ArchipelagoMW/Archipelago/blob/main/worlds/oot/LogicTricks.py
@@ -1717,5 +1717,5 @@ Ocarina of Time:
 
   death_link:
     # When you die, everyone dies. Of course the reverse is true too.
-    false: 8
-    true: 2
+    false: 50
+    true: 0

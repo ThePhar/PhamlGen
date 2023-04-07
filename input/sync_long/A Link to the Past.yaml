@@ -18,7 +18,7 @@
 # http://www.yamllint.com/
 
 description: Template Name # Used to describe your yaml. Useful if you have multiple files
-name: Bunny Phar # Your name in-game. Spaces will be replaced with underscores and there is a 16 character limit
+name: Bunny Phar {NUMBER} # Your name in-game. Spaces will be replaced with underscores and there is a 16 character limit
 #{player} will be replaced with the player's slot number.
 #{PLAYER} will be replaced with the player's slot number if that slot number is greater than 1.
 #{number} will be replaced with the counter value of the name.
@@ -26,7 +26,7 @@ name: Bunny Phar # Your name in-game. Spaces will be replaced with underscores a
 game: # Pick a game to play
   A Link to the Past
 requires:
-  version: 0.3.7 # Version of Archipelago required for this yaml to work as expected.
+  version: 0.4.0 # Version of Archipelago required for this yaml to work as expected.
 # Shared Options supported by all games:
 accessibility:
   items: 50 # Guarantees you will be able to acquire all items, but you may not be able to access all locations
