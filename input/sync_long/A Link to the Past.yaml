@@ -195,15 +195,15 @@ A Link to the Past:
     on: 50
     off: 50
   misery_mire_medallion: # required medallion to open Misery Mire front entrance
-    random: 50
-    Ether: 0
-    Bombos: 0
-    Quake: 0
+    random: 0
+    Ether: 1
+    Bombos: 1
+    Quake: 1
   turtle_rock_medallion: # required medallion to open Turtle Rock front entrance
-    random: 50
-    Ether: 0
-    Bombos: 0
-    Quake: 0
+    random: 0
+    Ether: 1
+    Bombos: 1
+    Quake: 1
   ### Enemizer Section ###
   boss_shuffle:
     none: 100 # Vanilla bosses
@@ -250,8 +250,8 @@ A Link to the Past:
   ### Shop Settings ###
   shop_item_slots: # Maximum amount of shop slots to be filled with regular item pool items (such as Moon Pearl)
     0: 50
-    5: 0
-    15: 0
+    5: 15
+    15: 5
     30: 0
     random: 0 # 0 to 30 evenly distributed
   shop_price_modifier: # Percentage modifier for shuffled item prices in shops
@@ -264,16 +264,37 @@ A Link to the Past:
     100: 50
   shop_shuffle:
     none: 0
-    g: 0 # Generate new default inventories for overworld/underworld shops, and unique shops
-    f: 0 # Generate new default inventories for every shop independently
-    i: 0 # Shuffle default inventories of the shops around
-    p: 0 # Randomize the prices of the items in shop inventories
-    u: 50 # Shuffle capacity upgrades into the item pool (and allow them to traverse the multiworld)
-    w: 0 # Consider witch's hut like any other shop and shuffle/randomize it too
-    P: 0 # Prices of the items in shop inventories cost hearts, arrow, or bombs instead of rupees
-    ip: 0 # Shuffle inventories and randomize prices
-    fpu: 0 # Generate new inventories, randomize prices and shuffle capacity upgrades into item pool
-    uip: 0 # Shuffle inventories, randomize prices and shuffle capacity upgrades into the item pool
+    gpuwP: 1
+    gpuw: 1
+    gpuP: 1
+    gpwP: 1
+    guwP: 1
+    puwP: 1
+    gpu: 1
+    gpw: 1
+    gpP: 1
+    guw: 1
+    guP: 1
+    gwP: 1
+    puw: 1
+    puP: 1
+    pwP: 1
+    uwP: 1
+    gp: 1
+    gu: 1
+    gw: 1
+    gP: 1
+    pu: 1
+    pw: 1
+    pP: 1
+    uw: 1
+    uP: 1
+    wP: 1
+    g: 1
+    p: 1
+    u: 1
+    w: 1
+    P: 1
     # You can add more combos
   ### End of Shop Section ###
   shuffle_prizes: # aka drops
@@ -442,5 +463,5 @@ A Link to the Past:
 
   allow_collect: # Allows for !collect / co-op to auto-open chests containing items for other players.
     #    Off by default, because it currently crashes on real hardware.
-    false: 0
-    true: 50
+    false: 50
+    true: 0

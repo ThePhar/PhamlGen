@@ -1,10 +1,10 @@
-import colorama
 import datetime
-import inquirer
 import os
 import random
 import shutil
 import sys
+
+import colorama
 import yaml
 
 from models import YAMLSettings
@@ -39,12 +39,16 @@ def main():
         if os.path.isdir(os.path.join(INPUT_DIR, name)):
             folders.append(name)
 
-    questions = [
-        inquirer.List("folder", "Which folder do you wish to generate a seed from?", choices=folders),
-        inquirer.List("separate", "Do you want each file to be its own world, or randomly pick one?",
-                      choices=["Every World", "Randomly Pick One"]),
-    ]
-    answers = inquirer.prompt(questions)
+    # questions = [
+    #     inquirer.List("folder", "Which folder do you wish to generate a seed from?", choices=folders),
+    #     inquirer.List("separate", "Do you want each file to be its own world, or randomly pick one?",
+    #                   choices=["Every World", "Randomly Pick One"]),
+    # ]
+    # answers = inquirer.prompt(questions)
+    answers = {
+        "folder": "sync_long",
+        "separate": "Every World"
+    }
     new_input_dir = INPUT_DIR + str(answers["folder"]) + "/"
 
     # Get all valid files in our input directory.

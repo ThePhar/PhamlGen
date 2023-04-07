@@ -1,5 +1,6 @@
 import datetime
 import os
+from typing import List, Tuple
 
 import yaml
 
@@ -40,7 +41,9 @@ class YAMLSettings:
                 else:
                     self.settings[attr] = setting.current_key
             except AttributeError:
-                self.settings[attr] = setting
+                yaml_settings = self.get_alttp_setting(attr, setting)
+                for yaml_attr, yaml_setting in yaml_settings:
+                    self.settings[yaml_attr] = yaml_setting
             except LookupError:
                 self.settings[attr] = setting.value
             except TypeError:
@@ -49,6 +52,78 @@ class YAMLSettings:
         # If a name override was submitted, override the name.
         if name_override:
             self.settings["name"] = name_override
+
+    @staticmethod
+    def get_alttp_setting(attr, setting) -> List[Tuple[str, any]]:
+        """
+        I only have to do this because not all of alttp's options are moved over and they're different in code! wtf
+        """
+
+        # glitches_required
+        if attr == "logic":
+            if setting == "noglitches":
+                return [("glitches_required", "none")]
+            if setting == "nologic":
+                return [("glitches_required", "nologic")]
+            if setting == "owglitches":
+                return [("glitches_required", "overworld_glitches")]
+            if setting == "minorglitches":
+                return [("glitches_required", "minor_glitches")]
+            if setting == "hybridglitches":
+                return [("glitches_required", "hybrid_major_glitches")]
+
+        # entrance_shuffle
+        if attr == "shuffle":
+            if setting == "vanilla":
+                return [("entrance_shuffle", "none")]
+
+            return [("entrance_shuffle", setting)]
+
+        # goals
+        if attr == "goal":
+            if setting == "ganonpedestal":
+                return [("goals", "ganon_pedestal")]
+            if setting == "triforcehunt":
+                return [("goals", "triforce_hunt")]
+            if setting == "localtriforcehunt":
+                return [("goals", "local_triforce_hunt")]
+            if setting == "ganontriforcehunt":
+                return [("goals", "ganon_triforce_hunt")]
+            if setting == "localganontriforcehunt":
+                return [("goals", "local_ganon_triforce_hunt")]
+            if setting == "icerodhunt":  # Why?
+                return [("goals", "ice_rod_hunt")]
+
+            return [("goals", setting)]
+
+        # item_pool
+        if attr == "difficulty":
+            return [("item_pool", setting)]
+
+        # timer
+        if attr == "timer":
+            if not setting:
+                return [("timer", "none")]
+            if setting == "timed-ohko":
+                return [("timer", "timed_ohko")]
+            if setting == "timed-countdown":
+                return [("timer", "timed_countdown")]
+
+            return [("timer", setting)]
+
+        # misery_mire_medallion and turtle_rock_medallion
+        if attr == "required_medallions":
+            for index, medallion in enumerate(setting):
+                if medallion == "ether":
+                    setting[index] = "Ether"
+                elif medallion == "quake":
+                    setting[index] = "Quake"
+                elif medallion == "bombos":
+                    setting[index] = "Bombos"
+
+            return [("misery_mire_medallion", setting[0]), ("turtle_rock_medallion", setting[1])]
+
+        return [(attr, setting)]
 
     def output(self, pg_version: str, file_name: str, output_dir: str):
         meta = fr"""{self.yaml_header(pg_version, self.requires["version"], file_name)}
