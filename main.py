@@ -89,7 +89,7 @@ def main():
 
             # Validate in AP's generator.
             plando = settings["requires"]["plando"] if "plando" in settings["requires"] else ""
-            Generate.roll_settings(settings, Generate.PlandoSettings.from_option_string(plando))
+            Generate.roll_settings(settings)
 
             # Validate name is safe as well.
             safe_name = False
