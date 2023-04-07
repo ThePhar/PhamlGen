@@ -5,6 +5,7 @@ import shutil
 import sys
 
 import colorama
+import inquirer
 import yaml
 
 from models import YAMLSettings
@@ -12,7 +13,7 @@ from models import YAMLSettings
 OUTPUT_DIR = "./output/"
 INPUT_DIR = "./input/"
 
-PHAML_VERSION = "0.6.0 RC2"
+PHAML_VERSION = "0.6.1"
 
 
 def main():
@@ -39,16 +40,12 @@ def main():
         if os.path.isdir(os.path.join(INPUT_DIR, name)):
             folders.append(name)
 
-    # questions = [
-    #     inquirer.List("folder", "Which folder do you wish to generate a seed from?", choices=folders),
-    #     inquirer.List("separate", "Do you want each file to be its own world, or randomly pick one?",
-    #                   choices=["Every World", "Randomly Pick One"]),
-    # ]
-    # answers = inquirer.prompt(questions)
-    answers = {
-        "folder": "sync_long",
-        "separate": "Every World"
-    }
+    questions = [
+        inquirer.List("folder", "Which folder do you wish to generate a seed from?", choices=folders),
+        inquirer.List("separate", "Do you want each file to be its own world, or randomly pick one?",
+                      choices=["Every World", "Randomly Pick One"]),
+    ]
+    answers = inquirer.prompt(questions)
     new_input_dir = INPUT_DIR + str(answers["folder"]) + "/"
 
     # Get all valid files in our input directory.
